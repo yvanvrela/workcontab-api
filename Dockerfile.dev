@@ -1,0 +1,13 @@
+FROM python:3.10
+
+RUN mkdir -p /home/workcontab
+
+WORKDIR /home/workcontab
+
+COPY ./requirements.txt /home/workcontab/requirements.txt
+
+RUN pip install --no-cache-dir --upgrade -r /home/workcontab/requirements.txt
+
+EXPOSE 8000
+
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
